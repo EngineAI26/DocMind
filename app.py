@@ -7,6 +7,7 @@ import re
 from collections import Counter
 from PIL import Image
 import io
+import time
 
 # ─── PAGE CONFIG ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -183,9 +184,16 @@ def ask_gemini(question: str, retrieved: list[dict]) -> str:
         {"role": "user" if m["role"] == "user" else "model", "parts": [m["content"]]}
         for m in st.session_state.chat_history
     ]
-    chat   = model.start_chat(history=history)
-    result = chat.send_message(question)
-    return result.text.strip()
+    try:
+        time.sleep(3)  # avoid hitting free tier rate limit
+        chat   = model.start_chat(history=history)
+        result = chat.send_message(question)
+        return result.text.strip()
+    except Exception as e:
+        err = str(e).lower()
+        if "resource exhausted" in err or "quota" in err or "429" in err:
+            return "⚠️ The AI is a bit busy right now (free tier rate limit). Please wait 30–60 seconds and try again."
+        raise e
 
 # ─── SIDEBAR ──────────────────────────────────────────────────────────────────
 with st.sidebar:
