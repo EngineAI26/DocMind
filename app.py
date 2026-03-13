@@ -193,7 +193,7 @@ with st.sidebar:
     <div style='margin-bottom:1rem'>
         <span style='font-size:1.4rem;font-weight:600;letter-spacing:-0.02em;color:#e8e9ed'>
         🧠 Doc<span style='color:#a89cff'>Mind</span></span><br>
-        <span style='font-size:0.78rem;color:#6b7280'>Multimodal RAG · Gemini 2.0 Flash</span>
+        <span style='font-size:0.78rem;color:#6b7280'>Multimodal RAG · AI Document Assistant</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -249,7 +249,7 @@ with st.sidebar:
 st.markdown("""
 <div class='hero'>
     <h1>🧠 Doc<span class='accent'>Mind</span></h1>
-    <p>Multi-modal Document Q&amp;A · Retrieval-Augmented Generation · Gemini 2.0 Flash</p>
+    <p>Upload any document · Ask questions · Get instant AI-powered answers</p>
 </div>
 """, unsafe_allow_html=True)
 
